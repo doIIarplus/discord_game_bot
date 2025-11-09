@@ -7,7 +7,7 @@ A Discord bot that allows you to manage game servers (Terraria, Minecraft, Facto
 - Start, stop, and restart game servers
 - Monitor server status and resource usage
 - View server information and statistics
-- Support for multiple game types
+- Support for multiple game types (Terraria, Minecraft, Factorio, Necesse, Palworld)
 - Slash command interface for easy use
 
 ## Prerequisites
@@ -86,6 +86,7 @@ python bot.py
 - Minecraft (Java Edition)
 - Factorio
 - Necesse
+- Palworld
 
 ## Security Note
 

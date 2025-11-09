@@ -155,11 +155,13 @@ class ServerManager:
         from .minecraft_server import MinecraftServer
         from .factorio_server import FactorioServer
         from .necesse_server import NecesseServer
+        from .palworld_server import PalworldServer
         
         self.server_classes['terraria'] = TerrariaServer
         self.server_classes['minecraft'] = MinecraftServer
         self.server_classes['factorio'] = FactorioServer
         self.server_classes['necesse'] = NecesseServer
+        self.server_classes['palworld'] = PalworldServer
     
     def create_server(self, game_type: str, name: str = None) -> Optional[GameServer]:
         """Create a server instance"""

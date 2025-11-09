@@ -20,6 +20,14 @@
       "executable_path": "/path/to/necesse/server.jar",
       "default_port": 42780,
       "memory": "2G"
+    },
+    "palworld": {
+      "executable_path": "/path/to/PalServer.sh", 
+      "default_port": 8211,
+      "query_port": 27015,
+      "rcon_port": 25575,
+      "server_name": "Palworld Server",
+      "max_players": 16
     }
   }
 }
