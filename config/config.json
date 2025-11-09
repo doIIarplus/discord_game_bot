@@ -1,0 +1,25 @@
+{
+  "discord_token": "YOUR_BOT_TOKEN_HERE",
+  "games": {
+    "terraria": {
+      "executable_path": "/path/to/terraria/server",
+      "default_port": 7777,
+      "default_world": "world.wld"
+    },
+    "minecraft": {
+      "executable_path": "/path/to/minecraft/server.jar",
+      "default_port": 25565,
+      "memory": "2G"
+    },
+    "factorio": {
+      "executable_path": "/path/to/factorio/bin/x64/factorio",
+      "default_port": 34197,
+      "server_settings": "/path/to/factorio/server-settings.json"
+    },
+    "necesse": {
+      "executable_path": "/path/to/necesse/server.jar",
+      "default_port": 42780,
+      "memory": "2G"
+    }
+  }
+}
