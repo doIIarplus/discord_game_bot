@@ -17,9 +17,14 @@
       "server_settings": "/path/to/factorio/server-settings.json"
     },
     "necesse": {
-      "executable_path": "/path/to/necesse/server.jar",
-      "default_port": 42780,
-      "memory": "2G"
+      "server_dir": "/path/to/necesse/server",
+      "executable_path": "/path/to/necesse/server/StartServer-nogui.sh",
+      "default_port": 14159,
+      "world_name": "NecesseWorld",
+      "max_slots": 8,
+      "server_password": "",
+      "owner_name": "",
+      "use_local_dir": true
     },
     "palworld": {
       "executable_path": "/path/to/PalServer.sh", 
