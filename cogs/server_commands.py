@@ -89,17 +89,33 @@ class ServerCommandsCog(commands.Cog, name="Server Commands"):
             )
             embed.add_field(name="Running", value="Yes" if status['running'] else "No", inline=True)
             embed.add_field(name="PID", value=status['pid'] or "N/A", inline=True)
-            embed.add_field(name="Port", value=status['port'], inline=True)
-            
+
+            # Port with protocol if available
+            port_value = str(status['port'])
+            if status.get('protocol'):
+                port_value += f" ({status['protocol']})"
+            embed.add_field(name="Port", value=port_value, inline=True)
+
+            # Game-specific fields (e.g., Necesse)
+            if status.get('world_name'):
+                embed.add_field(name="World", value=status['world_name'], inline=True)
+
+            if 'max_slots' in status:
+                embed.add_field(name="Max Players", value=str(status['max_slots']), inline=True)
+
+            if 'has_password' in status:
+                password_status = "🔒 Yes" if status['has_password'] else "🔓 No"
+                embed.add_field(name="Password", value=password_status, inline=True)
+
             # Add monitoring data if available
             monitoring_data = status.get('monitoring_data')
             if monitoring_data:
                 cpu_usage = monitoring_data.get('cpu_percent', 0)
                 mem_usage = monitoring_data.get('memory_percent', 0)
-                
+
                 embed.add_field(name="CPU Usage", value=f"{cpu_usage:.1f}%", inline=True)
                 embed.add_field(name="Memory Usage", value=f"{mem_usage:.1f}%", inline=True)
-            
+
             await interaction.followup.send(embed=embed)
         else:
             statuses = self.bot.server_manager.get_status()
@@ -111,17 +127,33 @@ class ServerCommandsCog(commands.Cog, name="Server Commands"):
             
             for name, status in statuses.items():
                 server_status = "✅ Running" if status['running'] else "❌ Stopped"
-                
+
+                # Build port string with protocol
+                port_str = str(status['port'])
+                if status.get('protocol'):
+                    port_str += f" ({status['protocol']})"
+
                 # Build server info string
-                server_info = f"Status: {server_status}\nPort: {status['port']}\nPID: {status['pid'] or 'N/A'}"
-                
+                server_info = f"Status: {server_status}\nPort: {port_str}\nPID: {status['pid'] or 'N/A'}"
+
+                # Add game-specific info (e.g., Necesse world name)
+                if status.get('world_name'):
+                    server_info += f"\nWorld: {status['world_name']}"
+
+                if 'max_slots' in status:
+                    server_info += f"\nMax Players: {status['max_slots']}"
+
+                if 'has_password' in status:
+                    pwd_icon = "🔒" if status['has_password'] else "🔓"
+                    server_info += f"\nPassword: {pwd_icon}"
+
                 # Add monitoring data if available
                 monitoring_data = status.get('monitoring_data')
                 if monitoring_data:
                     cpu_usage = monitoring_data.get('cpu_percent', 0)
                     mem_usage = monitoring_data.get('memory_percent', 0)
                     server_info += f"\nCPU: {cpu_usage:.1f}% | Memory: {mem_usage:.1f}%"
-                
+
                 embed.add_field(
                     name=name,
                     value=server_info,
